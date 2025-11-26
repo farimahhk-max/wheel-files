@@ -8,37 +8,52 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 5000);
 
+    /* CLOSE BUTTON */
     document.getElementById("wheel-close").onclick = function() {
         document.getElementById("wheel-popup-overlay").style.display = "none";
     };
 
+    /* SHORTENED LABELS FOR BETTER FIT */
     const prizes = [
         "ارسال رایگان",
         "پوچ",
-        "50٪ تخفیف مدرسه زندگی مشترک",
-        "کتاب عاقلانه به شیوه بزرگان",
-        "100 هزار تومان تخفیف",
-        "20٪ تخفیف برای بدون‌تخفیف‌ها",
-        "200 هزار تومان تخفیف",
-        "50٪ تخفیف کارگاه عمومی",
+        "۵۰٪ مدرسه مشترک",
+        "کتاب عاقلانه",
+        "۱۰۰هزار تخفیف",
+        "۲۰٪ بدون‌تخفیف",
+        "۲۰۰هزار تخفیف",
+        "۵۰٪ کارگاه عمومی",
         "آزمون رایگان",
         "دوباره بچرخون"
     ];
 
+    /* DARK + NEON COLORS */
     const colors = [
-        "#FF7676", "#FFD36E", "#8CE990", "#6EC9FF", "#FF9ACD",
-        "#B28DFF", "#FF8C42", "#42E5F5", "#FF5E78", "#7DFF86"
+        "#ff1744",
+        "#d500f9",
+        "#651fff",
+        "#00b0ff",
+        "#00e5ff",
+        "#1de9b6",
+        "#76ff03",
+        "#ffea00",
+        "#ff9100",
+        "#ff3d00"
     ];
 
     let canvas = document.getElementById("wheelCanvas");
     let ctx = canvas.getContext("2d");
+
     let userCanSpin = localStorage.getItem("wheelChance") !== "done";
     let extraSpin = false;
 
+    /* DRAW WHEEL */
     function drawWheel() {
         let arc = Math.PI * 2 / prizes.length;
+
         for (let i = 0; i < prizes.length; i++) {
             let angle = i * arc;
+
             ctx.beginPath();
             ctx.fillStyle = colors[i];
             ctx.moveTo(225, 225);
@@ -50,17 +65,20 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.rotate(angle + arc / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = "#fff";
-            ctx.font = "15px sans-serif";
-            ctx.fillText(prizes[i], 205, 5);
+            ctx.font = "bold 16px sans-serif";
+            ctx.fillText(prizes[i], 195, 5);
             ctx.restore();
         }
     }
+
     drawWheel();
 
+    /* HANDLE SPIN BUTTON */
     document.getElementById("spinBtn").onclick = function() {
 
         if (!userCanSpin && !extraSpin) {
-            document.getElementById("wheel-result").innerHTML = "شما قبلاً چرخانده‌اید.";
+            document.getElementById("wheel-result").innerHTML =
+                "شما قبلاً چرخانده‌اید.";
             return;
         }
 
@@ -75,23 +93,29 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             let prize = prizes[prizes.length - 1 - index];
 
+            /* EXTRA SPIN */
             if (prize === "دوباره بچرخون") {
-                document.getElementById("wheel-result").innerHTML = "تبریک! یک بار دیگر بچرخان 🎉";
+                document.getElementById("wheel-result").innerHTML =
+                    "🎉 یک شانس دیگر داری!";
                 extraSpin = true;
                 return;
             }
 
+            /* LOSE */
             if (prize === "پوچ") {
-                document.getElementById("wheel-result").innerHTML = "متأسفانه پوچ شد 😕";
+                document.getElementById("wheel-result").innerHTML =
+                    "متأسفانه پوچ شد 😕";
                 localStorage.setItem("wheelChance", "done");
                 userCanSpin = false;
                 return;
             }
 
+            /* GENERATE DISCOUNT CODE */
             let code = "AM-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 
             document.getElementById("wheel-result").innerHTML =
-                "🎁 جایزه: <strong>" + prize + "</strong><br>کد: <strong>" + code + "</strong>";
+                "🎁 جایزه: <strong>" + prize +
+                "</strong><br>کد تخفیف: <strong>" + code + "</strong>";
 
             localStorage.setItem("wheelChance", "done");
             userCanSpin = false;
