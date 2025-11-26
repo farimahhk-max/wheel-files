@@ -1,6 +1,6 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
+    /* POPUP DELAY */
     setTimeout(function() {
         if (!localStorage.getItem("wheelPopupSeen")) {
             document.getElementById("wheel-popup-overlay").style.display = "flex";
