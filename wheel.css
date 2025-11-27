@@ -8,23 +8,23 @@
 #wheel-popup-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.90);
+    background: rgba(0,0,0,0.92);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 999999;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
 }
 
 /* ===== POPUP BOX ===== */
 #wheel-popup {
-    background: #0b0b0b;
-    padding: 40px 25px 55px;
+    background: #0c0c0c;
+    padding: 50px 25px 65px;
     border-radius: 22px;
     width: 90%;
-    max-width: 540px;
-    box-shadow: 0 0 55px rgba(255,0,85,0.45),
-                inset 0 0 50px rgba(255,0,85,0.18);
+    max-width: 560px;
+    box-shadow: 0 0 65px rgba(255,0,85,0.55),
+                inset 0 0 55px rgba(255,0,85,0.20);
     border: 1px solid rgba(255,0,80,0.5);
     position: relative;
     text-align: center;
@@ -35,73 +35,73 @@
     position: absolute;
     right: 18px;
     top: 15px;
-    font-size: 28px;
+    font-size: 30px;
     cursor: pointer;
     color: #ff2d75;
-    text-shadow: 0 0 12px #ff2d75;
+    text-shadow: 0 0 16px #ff2d75;
     transition: 0.2s;
 }
 #wheel-close:hover {
     color: #ff5893;
 }
 
-/* ===== POINTER ===== */
+/* ===== POINTER / INDICATOR ===== */
 #wheel-pointer {
     width: 0;
     height: 0;
-    border-left: 22px solid transparent;
-    border-right: 22px solid transparent;
-    border-bottom: 32px solid #ffea00;
+    border-left: 24px solid transparent;
+    border-right: 24px solid transparent;
+    border-bottom: 34px solid #ffe81f;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 85px;
-    filter: drop-shadow(0 0 8px #ffea00);
-    z-index: 10;
+    top: 115px; /* دقیقاً روی لبه چرخ */
+    filter: drop-shadow(0 0 10px #ffe81f);
+    z-index: 99;
 }
 
 /* ===== CANVAS ===== */
 #wheelCanvas {
-    width: 430px !important;
-    height: 430px !important;
+    width: 440px;
+    height: 440px;
     max-width: 100%;
-    margin: 0 auto 35px auto;
+    margin: 50px auto 35px auto;
     border-radius: 50%;
-    background: radial-gradient(circle, #1a1a1a, #000000);
-    border: 6px solid #000;
+    background: radial-gradient(circle, #1a1a1a, #000);
+    border: 8px solid #0a0a0a;
     box-shadow:
-        0 0 35px rgba(255,0,85,0.4),
-        inset 0 0 45px rgba(0,0,0,0.7);
+        0 0 40px rgba(255,0,85,0.4),
+        inset 0 0 50px rgba(0,0,0,0.7);
 }
 
-/* ===== SPIN BUTTON ===== */
+/* BUTTON */
 #spinBtn {
-    background: linear-gradient(135deg, #ff9900, #ff6a00);
+    background: linear-gradient(135deg, #ff9800, #ff5e00);
     border: none;
-    padding: 15px 40px;
-    border-radius: 12px;
-    font-size: 20px;
+    padding: 17px 45px;
+    border-radius: 14px;
+    font-size: 21px;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
     margin: 0 auto;
     display: block;
-    box-shadow: 0 0 18px rgba(255,140,0,0.8);
-    transition: all 0.2s ease;
+    box-shadow: 0 0 20px rgba(255,128,0,0.8);
+    transition: .2s;
 }
 #spinBtn:hover {
-    background: linear-gradient(135deg, #ffb441, #ff7f1a);
-    box-shadow: 0 0 25px rgba(255,167,51,1);
+    background: linear-gradient(135deg, #ffb84d, #ff7f1f);
+    box-shadow: 0 0 30px rgba(255,150,0,1);
 }
 
-/* ===== RESULT TEXT ===== */
+/* RESULT */
 #wheel-result {
-    margin-top: 30px;
-    font-size: 21px;
+    margin-top: 35px;
+    font-size: 22px;
     color: #fff;
-    text-shadow: 0 0 10px #ff2d75;
+    text-shadow: 0 0 12px #ff2d75;
     font-weight: bold;
-    line-height: 1.8;
+    line-height: 2;
 }
 
 /* ===== MOBILE ===== */
@@ -111,10 +111,9 @@
         height: 300px !important;
     }
     #wheel-pointer{
-        top: 60px;
+        top: 72px;
     }
-    #spinBtn{
-        font-size: 17px;
-        padding: 12px 28px;
+    #wheel-popup{
+        padding: 35px 20px 40px;
     }
 }
