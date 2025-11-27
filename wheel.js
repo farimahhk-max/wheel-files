@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("wheel-popup-overlay").style.display = "none";
     };
 
-    /* SHORTENED LABELS FOR BETTER FIT */
+    /* PRIZES */
     const prizes = [
         "ارسال رایگان",
         "پوچ",
@@ -27,30 +27,28 @@ document.addEventListener("DOMContentLoaded", function () {
         "دوباره بچرخون"
     ];
 
-    /* DARK + NEON COLORS */
+    /* COLORS (darker + neon) */
     const colors = [
-        "#ff1744",
-        "#d500f9",
-        "#651fff",
-        "#00b0ff",
-        "#00e5ff",
-        "#1de9b6",
-        "#76ff03",
-        "#ffea00",
-        "#ff9100",
-        "#ff3d00"
+        "#154c79",
+        "#651a8e",
+        "#11427e",
+        "#1a4d43",
+        "#0d6b3d",
+        "#637f0d",
+        "#886c09",
+        "#8d3d07",
+        "#8b1336",
+        "#61132d"
     ];
 
     let canvas = document.getElementById("wheelCanvas");
     let ctx = canvas.getContext("2d");
-
     let userCanSpin = localStorage.getItem("wheelChance") !== "done";
     let extraSpin = false;
 
     /* DRAW WHEEL */
     function drawWheel() {
         let arc = Math.PI * 2 / prizes.length;
-
         for (let i = 0; i < prizes.length; i++) {
             let angle = i * arc;
 
@@ -60,25 +58,28 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.arc(225, 225, 225, angle, angle + arc);
             ctx.fill();
 
+            /* BORDER between slices */
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
             ctx.save();
             ctx.translate(225, 225);
             ctx.rotate(angle + arc / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = "#fff";
-            ctx.font = "bold 16px sans-serif";
-            ctx.fillText(prizes[i], 195, 5);
+            ctx.font = "bold 17px sans-serif";
+            ctx.fillText(prizes[i], 205, 5);
             ctx.restore();
         }
     }
-
     drawWheel();
 
-    /* HANDLE SPIN BUTTON */
+    /* SPIN BUTTON */
     document.getElementById("spinBtn").onclick = function() {
 
         if (!userCanSpin && !extraSpin) {
-            document.getElementById("wheel-result").innerHTML =
-                "شما قبلاً چرخانده‌اید.";
+            document.getElementById("wheel-result").innerHTML = "شما قبلاً چرخانده‌اید.";
             return;
         }
 
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            /* LOSE */
+            /* NOTHING */
             if (prize === "پوچ") {
                 document.getElementById("wheel-result").innerHTML =
                     "متأسفانه پوچ شد 😕";
