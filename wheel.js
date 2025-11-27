@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* POPUP DELAY */
+    /* ============================
+       POPUP SHOW ONLY FIRST TIME
+    =============================== */
     setTimeout(function() {
         if (!localStorage.getItem("wheelPopupSeen")) {
             document.getElementById("wheel-popup-overlay").style.display = "flex";
@@ -8,12 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 5000);
 
-    /* CLOSE BUTTON */
+    /* ============================
+       CLOSE POPUP
+    =============================== */
     document.getElementById("wheel-close").onclick = function() {
         document.getElementById("wheel-popup-overlay").style.display = "none";
     };
 
-    /* PRIZES */
+
+    /* ============================
+       PRIZES (Text inside slices)
+    =============================== */
     const prizes = [
         "ارسال رایگان",
         "پوچ",
@@ -27,28 +34,39 @@ document.addEventListener("DOMContentLoaded", function () {
         "دوباره بچرخون"
     ];
 
-    /* COLORS (darker + neon) */
+
+    /* ============================
+       DARK + RICH COLOR PALETTE
+    =============================== */
     const colors = [
-        "#154c79",
-        "#651a8e",
-        "#11427e",
-        "#1a4d43",
-        "#0d6b3d",
-        "#637f0d",
-        "#886c09",
-        "#8d3d07",
-        "#8b1336",
-        "#61132d"
+        "#2d1e4a",
+        "#5a1f3d",
+        "#733a0a",
+        "#2f4a0a",
+        "#1f3e6f",
+        "#335d2d",
+        "#522648",
+        "#2b2b2b",
+        "#004a63",
+        "#613a0f"
     ];
 
+
+    /* ============================
+       CANVAS SETUP
+    =============================== */
     let canvas = document.getElementById("wheelCanvas");
     let ctx = canvas.getContext("2d");
+
     let userCanSpin = localStorage.getItem("wheelChance") !== "done";
     let extraSpin = false;
 
-    /* DRAW WHEEL */
+    /* ============================
+       DRAW WHEEL WITH STROKES
+    =============================== */
     function drawWheel() {
         let arc = Math.PI * 2 / prizes.length;
+
         for (let i = 0; i < prizes.length; i++) {
             let angle = i * arc;
 
@@ -58,11 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.arc(225, 225, 225, angle, angle + arc);
             ctx.fill();
 
-            /* BORDER between slices */
+            /* Stroke between slices */
             ctx.strokeStyle = "#000";
             ctx.lineWidth = 4;
             ctx.stroke();
 
+            /* TEXT */
             ctx.save();
             ctx.translate(225, 225);
             ctx.rotate(angle + arc / 2);
@@ -73,13 +92,18 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.restore();
         }
     }
+
     drawWheel();
 
-    /* SPIN BUTTON */
+
+    /* ============================
+       SPIN BUTTON
+    =============================== */
     document.getElementById("spinBtn").onclick = function() {
 
         if (!userCanSpin && !extraSpin) {
-            document.getElementById("wheel-result").innerHTML = "شما قبلاً چرخانده‌اید.";
+            document.getElementById("wheel-result").innerHTML =
+                "شما قبلاً چرخانده‌اید.";
             return;
         }
 
@@ -111,8 +135,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            /* GENERATE DISCOUNT CODE */
-            let code = "AM-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+            /* DISCOUNT CODE GENERATOR */
+            let code = "AM-" + Math.random()
+                .toString(36)
+                .substring(2, 8)
+                .toUpperCase();
 
             document.getElementById("wheel-result").innerHTML =
                 "🎁 جایزه: <strong>" + prize +
