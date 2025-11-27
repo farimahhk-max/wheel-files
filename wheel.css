@@ -1,28 +1,35 @@
-/* --- POPUP OVERLAY --- */
+/* ======= GLOBAL RESET ======= */
+#wheel-popup-overlay, #wheel-popup, #wheelCanvas, #spinBtn, #wheel-result {
+    direction: rtl !important;
+    font-family: sans-serif !important;
+}
+
+/* ===== POPUP OVERLAY ===== */
 #wheel-popup-overlay {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85);
+    inset: 0;
+    background: rgba(0,0,0,0.88);
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999999;
+    z-index: 99999999;
+    backdrop-filter: blur(4px);
 }
 
-/* --- POPUP BOX --- */
+/* ===== POPUP BOX ===== */
 #wheel-popup {
-    background: #0a0a0a;
+    background: #0d0d0d;
+    padding: 35px 30px;
     border-radius: 18px;
-    padding: 35px;
     width: 90%;
-    max-width: 520px;
-    border: 1px solid rgba(255,0,80,0.4);
-    box-shadow: 0 0 30px rgba(255,0,80,0.5), inset 0 0 40px rgba(255,0,80,0.2);
+    max-width: 540px;
+    box-shadow: 0 0 40px rgba(255,20,100,0.5), inset 0 0 40px rgba(255,20,100,0.2);
+    border: 1px solid rgba(255,0,80,0.45);
     position: relative;
+    text-align: center;
 }
 
-/* CLOSE BUTTON */
+/* ===== CLOSE BUTTON ===== */
 #wheel-close {
     position: absolute;
     right: 15px;
@@ -31,48 +38,56 @@
     cursor: pointer;
     color: #ff2d75;
     text-shadow: 0 0 10px #ff2d75;
-}
-
-/* CANVAS (THE WHEEL) */
-#wheelCanvas {
-    border-radius: 50%;
-    border: 6px solid #2a2a2a;
-    box-shadow: 
-        0 0 20px rgba(255,0,80,0.5),
-        inset 0 0 40px rgba(0,0,0,0.6);
-    background: radial-gradient(circle, #1b1b1b, #000000);
-    margin-bottom: 25px;
-}
-
-/* SPIN BUTTON */
-#spinBtn {
-    background: #ff8c00;
-    border: none;
-    padding: 14px 38px;
-    border-radius: 12px;
-    font-size: 18px;
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255,140,0,0.7);
     transition: 0.2s;
 }
-
-#spinBtn:hover {
-    background: #ffa733;
-    box-shadow: 0 0 20px rgba(255,167,51,1);
+#wheel-close:hover {
+    color: #ff5c96;
+    text-shadow: 0 0 15px #ff5c96;
 }
 
-/* RESULT TEXT */
-#wheel-result {
-    font-size: 20px;
+/* ===== CANVAS (THE WHEEL) ===== */
+#wheelCanvas {
+    width: 430px !important;
+    height: 430px !important;
+    max-width: 100%;
+    margin: 0 auto 25px auto;
+    border-radius: 50%;
+    border: 6px solid #1e1e1e;
+    background: radial-gradient(circle, #181818, #000000);
+    box-shadow:
+        0 0 25px rgba(255,0,80,0.6),
+        inset 0 0 40px rgba(0,0,0,0.6);
+}
+
+/* ===== BUTTON ===== */
+#spinBtn {
+    background: linear-gradient(135deg, #ff9900, #ff6a00);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: bold;
     color: #fff;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: 600;
-    text-shadow: 0 0 8px #ff2d75;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,140,0,0.8);
+    transition: all 0.2s ease;
+}
+#spinBtn:hover {
+    background: linear-gradient(135deg, #ffb241, #ff7f1a);
+    box-shadow: 0 0 25px rgba(255,167,51,1);
 }
 
-/* RESPONSIVE */
+/* ===== RESULT TEXT ===== */
+#wheel-result {
+    margin-top: 20px;
+    font-size: 21px;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ff2d75;
+    font-weight: bold;
+    line-height: 1.8;
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 480px) {
     #wheelCanvas {
         width: 300px !important;
@@ -80,7 +95,11 @@
     }
 
     #spinBtn {
-        font-size: 16px;
-        padding: 12px 25px;
+        font-size: 17px;
+        padding: 12px 28px;
+    }
+
+    #wheel-result {
+        font-size: 18px;
     }
 }
