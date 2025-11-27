@@ -1,30 +1,30 @@
-/* ======= GLOBAL RESET ======= */
+/* ===== GLOBAL ===== */
 #wheel-popup-overlay, #wheel-popup, #wheelCanvas, #spinBtn, #wheel-result {
     direction: rtl !important;
-    font-family: sans-serif !important;
+    font-family: "IRANSans", sans-serif !important;
 }
 
 /* ===== POPUP OVERLAY ===== */
 #wheel-popup-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.88);
+    background: rgba(0,0,0,0.90);
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 99999999;
-    backdrop-filter: blur(4px);
+    z-index: 999999;
+    backdrop-filter: blur(3px);
 }
 
 /* ===== POPUP BOX ===== */
 #wheel-popup {
-    background: #0d0d0d;
-    padding: 35px 30px;
-    border-radius: 18px;
+    background: #0b0b0b;
+    padding: 40px 25px 50px;
+    border-radius: 20px;
     width: 90%;
     max-width: 540px;
-    box-shadow: 0 0 40px rgba(255,20,100,0.5), inset 0 0 40px rgba(255,20,100,0.2);
-    border: 1px solid rgba(255,0,80,0.45);
+    box-shadow: 0 0 45px rgba(255,0,85,0.45), inset 0 0 45px rgba(255,0,85,0.15);
+    border: 1px solid rgba(255,0,80,0.4);
     position: relative;
     text-align: center;
 }
@@ -37,51 +37,67 @@
     font-size: 26px;
     cursor: pointer;
     color: #ff2d75;
-    text-shadow: 0 0 10px #ff2d75;
+    text-shadow: 0 0 12px #ff2d75;
     transition: 0.2s;
 }
 #wheel-close:hover {
-    color: #ff5c96;
-    text-shadow: 0 0 15px #ff5c96;
+    color: #ff5893;
 }
 
-/* ===== CANVAS (THE WHEEL) ===== */
+/* ===== INDICATOR / POINTER ===== */
+#wheel-pointer {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 35px solid #ffea00;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 8px #ffea00);
+    z-index: 99;
+}
+
+/* ===== CANVAS ===== */
 #wheelCanvas {
     width: 430px !important;
     height: 430px !important;
     max-width: 100%;
-    margin: 0 auto 25px auto;
+    margin: 40px auto 35px;
     border-radius: 50%;
-    border: 6px solid #1e1e1e;
-    background: radial-gradient(circle, #181818, #000000);
+    background: radial-gradient(circle, #141414, #000);
+    border: 6px solid #000;
     box-shadow:
-        0 0 25px rgba(255,0,80,0.6),
-        inset 0 0 40px rgba(0,0,0,0.6);
+        0 0 30px rgba(255,0,85,0.4),
+        inset 0 0 40px rgba(0,0,0,0.7);
 }
 
-/* ===== BUTTON ===== */
+/* ===== SPIN BUTTON CENTERED ===== */
 #spinBtn {
     background: linear-gradient(135deg, #ff9900, #ff6a00);
     border: none;
     padding: 15px 40px;
     border-radius: 12px;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255,140,0,0.8);
-    transition: all 0.2s ease;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 0 18px rgba(255,140,0,0.8);
+    transition: 0.2s ease;
 }
 #spinBtn:hover {
-    background: linear-gradient(135deg, #ffb241, #ff7f1a);
+    background: linear-gradient(135deg, #ffb441, #ff7f1a);
     box-shadow: 0 0 25px rgba(255,167,51,1);
 }
 
 /* ===== RESULT TEXT ===== */
 #wheel-result {
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 21px;
-    color: #ffffff;
+    color: #fff;
     text-shadow: 0 0 10px #ff2d75;
     font-weight: bold;
     line-height: 1.8;
@@ -89,17 +105,18 @@
 
 /* ===== MOBILE ===== */
 @media (max-width: 480px) {
+
     #wheelCanvas {
         width: 300px !important;
         height: 300px !important;
     }
 
     #spinBtn {
-        font-size: 17px;
-        padding: 12px 28px;
+        font-size: 18px;
+        padding: 12px 26px;
     }
 
     #wheel-result {
-        font-size: 18px;
+        font-size: 17px;
     }
 }
