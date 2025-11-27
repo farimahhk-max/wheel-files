@@ -28,18 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     /* DARK RICH COLORS */
-    const colors = [
-        "#2d1e4a",
-        "#5a1f3d",
-        "#733a0a",
-        "#2f4a0a",
-        "#1f3e6f",
-        "#335d2d",
-        "#522648",
-        "#2b2b2b",
-        "#004a63",
-        "#613a0f"
-    ];
+const colors = [
+    "#10365B",
+    "#4C1A24",
+    "#0B4F2C",
+    "#8C3C1A",
+    "#23395B",
+    "#5A2E63",
+    "#2C2C54",
+    "#1E5631",
+    "#3C2F2F",
+    "#6B4226"
+];
+
 
     let canvas = document.getElementById("wheelCanvas");
     let ctx = canvas.getContext("2d");
