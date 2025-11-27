@@ -4,48 +4,48 @@
     font-family: "IRANSans", sans-serif !important;
 }
 
-/* ===== POPUP OVERLAY ===== */
+/* پوشش تیره صفحه */
 #wheel-popup-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.92);
+    background: rgba(0,0,0,0.90);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 999999;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(4px);
 }
 
-/* ===== POPUP BOX ===== */
+/* باکس پاپ‌آپ */
 #wheel-popup {
-    background: #0c0c0c;
-    padding: 50px 25px 65px;
+    background: #0b0b0b;
+    padding: 40px 25px 55px;
     border-radius: 22px;
     width: 90%;
-    max-width: 560px;
-    box-shadow: 0 0 65px rgba(255,0,85,0.55),
-                inset 0 0 55px rgba(255,0,85,0.20);
+    max-width: 540px;
+    box-shadow: 0 0 55px rgba(255,0,85,0.45),
+                inset 0 0 50px rgba(255,0,85,0.18);
     border: 1px solid rgba(255,0,80,0.5);
     position: relative;
     text-align: center;
 }
 
-/* ===== CLOSE BUTTON ===== */
+/* دکمه بستن */
 #wheel-close {
     position: absolute;
     right: 18px;
     top: 15px;
-    font-size: 30px;
+    font-size: 28px;
     cursor: pointer;
     color: #ff2d75;
-    text-shadow: 0 0 16px #ff2d75;
+    text-shadow: 0 0 12px #ff2d75;
     transition: 0.2s;
 }
 #wheel-close:hover {
     color: #ff5893;
 }
 
-/* ===== POINTER / INDICATOR ===== */
+/* فلش انتخاب */
 #wheel-pointer {
     width: 0;
     height: 0;
@@ -55,65 +55,66 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 115px; /* دقیقاً روی لبه چرخ */
+    top: 80px; /* اگر خیلی بالا/پایین بود، همین رو کم و زیاد کن */
     filter: drop-shadow(0 0 10px #ffe81f);
     z-index: 99;
 }
 
-/* ===== CANVAS ===== */
+/* خود گردونه */
 #wheelCanvas {
-    width: 440px;
-    height: 440px;
+    width: 430px !important;
+    height: 430px !important;
     max-width: 100%;
-    margin: 50px auto 35px auto;
+    margin: 40px auto 35px;
     border-radius: 50%;
-    background: radial-gradient(circle, #1a1a1a, #000);
-    border: 8px solid #0a0a0a;
+    background: radial-gradient(circle, #1a1a1a, #000000);
+    border: 6px solid #000;
     box-shadow:
-        0 0 40px rgba(255,0,85,0.4),
-        inset 0 0 50px rgba(0,0,0,0.7);
+        0 0 35px rgba(255,0,85,0.4),
+        inset 0 0 45px rgba(0,0,0,0.7);
 }
 
-/* BUTTON */
+/* دکمه چرخاندن */
 #spinBtn {
-    background: linear-gradient(135deg, #ff9800, #ff5e00);
+    background: linear-gradient(135deg, #ff9900, #ff6a00);
     border: none;
-    padding: 17px 45px;
-    border-radius: 14px;
-    font-size: 21px;
+    padding: 15px 40px;
+    border-radius: 12px;
+    font-size: 20px;
     font-weight: bold;
     color: #fff;
     cursor: pointer;
     margin: 0 auto;
     display: block;
-    box-shadow: 0 0 20px rgba(255,128,0,0.8);
-    transition: .2s;
+    box-shadow: 0 0 18px rgba(255,140,0,0.8);
+    transition: all 0.2s ease;
 }
 #spinBtn:hover {
-    background: linear-gradient(135deg, #ffb84d, #ff7f1f);
-    box-shadow: 0 0 30px rgba(255,150,0,1);
+    background: linear-gradient(135deg, #ffb441, #ff7f1a);
+    box-shadow: 0 0 25px rgba(255,167,51,1);
 }
 
-/* RESULT */
+/* متن نتیجه */
 #wheel-result {
-    margin-top: 35px;
-    font-size: 22px;
+    margin-top: 30px;
+    font-size: 21px;
     color: #fff;
-    text-shadow: 0 0 12px #ff2d75;
+    text-shadow: 0 0 10px #ff2d75;
     font-weight: bold;
-    line-height: 2;
+    line-height: 1.8;
 }
 
-/* ===== MOBILE ===== */
+/* موبایل */
 @media(max-width: 480px){
     #wheelCanvas{
         width: 300px !important;
         height: 300px !important;
     }
     #wheel-pointer{
-        top: 72px;
+        top: 60px;
     }
-    #wheel-popup{
-        padding: 35px 20px 40px;
+    #spinBtn{
+        font-size: 17px;
+        padding: 12px 28px;
     }
 }
