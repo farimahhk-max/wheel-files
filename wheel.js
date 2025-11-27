@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* نمایش پاپ‌آپ بعد از ۵ ثانیه (فقط یک بار برای هر مرورگر) */
-    setTimeout(function() {
+    /* نمایش پاپ‌آپ بعد از ۵ ثانیه (فقط یک بار) */
+    setTimeout(function () {
         if (!localStorage.getItem("wheelPopupSeen")) {
             document.getElementById("wheel-popup-overlay").style.display = "flex";
             localStorage.setItem("wheelPopupSeen", "yes");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 5000);
 
     /* بستن پاپ‌آپ */
-    document.getElementById("wheel-close").onclick = function() {
+    document.getElementById("wheel-close").onclick = function () {
         document.getElementById("wheel-popup-overlay").style.display = "none";
     };
 
@@ -27,17 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
         "دوباره بچرخون"
     ];
 
-    /* رنگ‌های تیره، شارپ و براق */
+    /* رنگ‌های تیره، براق و شارپ */
     const colors = [
         "#12355B", // سرمه‌ای
-        "#61122F", // زرشکی
+        "#61122F", // زرشکی تیره
         "#0F5B36", // زمردی
         "#A8431F", // آجری
         "#1F3F72", // نفتی
-        "#5A2E82", // بنفش
+        "#5A2E82", // بنفش براق
         "#243447", // دودی
-        "#1F6F4A", // سبز
-        "#3F2A2A", // قهوه‌ای
+        "#1F6F4A", // سبز یشمی
+        "#3F2A2A", // قهوه‌ای تیره
         "#7A4B24"  // قهوه‌ای طلایی
     ];
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.arc(225, 225, 225, angle, angle + arc);
             ctx.fill();
 
-            /* خط مرزی بین برش‌ها */
+            /* مرزبندی واضح بین برش‌ها */
             ctx.strokeStyle = "#000";
             ctx.lineWidth = 4;
             ctx.stroke();
@@ -70,17 +70,17 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.translate(225, 225);
             ctx.rotate(angle + arc / 2);
             ctx.textAlign = "right";
-            ctx.fillStyle = "#fff";
+            ctx.fillStyle = "#ffffff";
             ctx.font = "bold 17px sans-serif";
-            ctx.fillText(prizes[i], 205, 5);
+            ctx.fillText(prizes[i], 200, 5);
             ctx.restore();
         }
     }
 
     drawWheel();
 
-    /* منطق چرخاندن */
-    document.getElementById("spinBtn").onclick = function() {
+    /* چرخاندن */
+    document.getElementById("spinBtn").onclick = function () {
 
         if (!userCanSpin && !extraSpin) {
             document.getElementById("wheel-result").innerHTML =
