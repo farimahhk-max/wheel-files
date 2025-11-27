@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* SHOW POPUP AFTER 5 SECONDS */
+    /* نمایش پاپ‌آپ بعد از ۵ ثانیه (فقط یک بار برای هر مرورگر) */
     setTimeout(function() {
         if (!localStorage.getItem("wheelPopupSeen")) {
             document.getElementById("wheel-popup-overlay").style.display = "flex";
@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 5000);
 
-    /* CLOSE POPUP */
+    /* بستن پاپ‌آپ */
     document.getElementById("wheel-close").onclick = function() {
         document.getElementById("wheel-popup-overlay").style.display = "none";
     };
 
-    /* PRIZES */
+    /* جوایز */
     const prizes = [
         "ارسال رایگان",
         "پوچ",
@@ -27,20 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "دوباره بچرخون"
     ];
 
-    /* DARK RICH COLORS */
-const colors = [
-    "#10365B",
-    "#4C1A24",
-    "#0B4F2C",
-    "#8C3C1A",
-    "#23395B",
-    "#5A2E63",
-    "#2C2C54",
-    "#1E5631",
-    "#3C2F2F",
-    "#6B4226"
-];
-
+    /* رنگ‌های تیره، شارپ و براق */
+    const colors = [
+        "#12355B", // سرمه‌ای
+        "#61122F", // زرشکی
+        "#0F5B36", // زمردی
+        "#A8431F", // آجری
+        "#1F3F72", // نفتی
+        "#5A2E82", // بنفش
+        "#243447", // دودی
+        "#1F6F4A", // سبز
+        "#3F2A2A", // قهوه‌ای
+        "#7A4B24"  // قهوه‌ای طلایی
+    ];
 
     let canvas = document.getElementById("wheelCanvas");
     let ctx = canvas.getContext("2d");
@@ -48,7 +47,7 @@ const colors = [
     let userCanSpin = localStorage.getItem("wheelChance") !== "done";
     let extraSpin = false;
 
-    /* DRAW WHEEL */
+    /* رسم گردونه */
     function drawWheel() {
         let arc = Math.PI * 2 / prizes.length;
 
@@ -61,12 +60,12 @@ const colors = [
             ctx.arc(225, 225, 225, angle, angle + arc);
             ctx.fill();
 
-            /* BORDER LINE */
+            /* خط مرزی بین برش‌ها */
             ctx.strokeStyle = "#000";
             ctx.lineWidth = 4;
             ctx.stroke();
 
-            /* TEXT */
+            /* متن */
             ctx.save();
             ctx.translate(225, 225);
             ctx.rotate(angle + arc / 2);
@@ -80,7 +79,7 @@ const colors = [
 
     drawWheel();
 
-    /* SPIN BUTTON */
+    /* منطق چرخاندن */
     document.getElementById("spinBtn").onclick = function() {
 
         if (!userCanSpin && !extraSpin) {
@@ -100,7 +99,7 @@ const colors = [
         setTimeout(() => {
             let prize = prizes[prizes.length - 1 - index];
 
-            /* Extra Spin */
+            /* دوباره بچرخون */
             if (prize === "دوباره بچرخون") {
                 document.getElementById("wheel-result").innerHTML =
                     "🎉 یک شانس دیگر داری!";
@@ -108,7 +107,7 @@ const colors = [
                 return;
             }
 
-            /* Nothing */
+            /* پوچ */
             if (prize === "پوچ") {
                 document.getElementById("wheel-result").innerHTML =
                     "متأسفانه پوچ شد 😕";
@@ -117,7 +116,7 @@ const colors = [
                 return;
             }
 
-            /* DISCOUNT CODE */
+            /* تولید کد تخفیف */
             let code = "AM-" + Math.random()
                 .toString(36)
                 .substring(2, 8)
