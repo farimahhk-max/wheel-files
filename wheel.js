@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ============================
-       POPUP SHOW ONLY FIRST TIME
-    =============================== */
+    /* SHOW POPUP AFTER 5 SECONDS */
     setTimeout(function() {
         if (!localStorage.getItem("wheelPopupSeen")) {
             document.getElementById("wheel-popup-overlay").style.display = "flex";
@@ -10,17 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 5000);
 
-    /* ============================
-       CLOSE POPUP
-    =============================== */
+    /* CLOSE POPUP */
     document.getElementById("wheel-close").onclick = function() {
         document.getElementById("wheel-popup-overlay").style.display = "none";
     };
 
-
-    /* ============================
-       PRIZES (Text inside slices)
-    =============================== */
+    /* PRIZES */
     const prizes = [
         "ارسال رایگان",
         "پوچ",
@@ -34,10 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "دوباره بچرخون"
     ];
 
-
-    /* ============================
-       DARK + RICH COLOR PALETTE
-    =============================== */
+    /* DARK RICH COLORS */
     const colors = [
         "#2d1e4a",
         "#5a1f3d",
@@ -51,19 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "#613a0f"
     ];
 
-
-    /* ============================
-       CANVAS SETUP
-    =============================== */
     let canvas = document.getElementById("wheelCanvas");
     let ctx = canvas.getContext("2d");
 
     let userCanSpin = localStorage.getItem("wheelChance") !== "done";
     let extraSpin = false;
 
-    /* ============================
-       DRAW WHEEL WITH STROKES
-    =============================== */
+    /* DRAW WHEEL */
     function drawWheel() {
         let arc = Math.PI * 2 / prizes.length;
 
@@ -76,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.arc(225, 225, 225, angle, angle + arc);
             ctx.fill();
 
-            /* Stroke between slices */
+            /* BORDER LINE */
             ctx.strokeStyle = "#000";
             ctx.lineWidth = 4;
             ctx.stroke();
@@ -95,10 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     drawWheel();
 
-
-    /* ============================
-       SPIN BUTTON
-    =============================== */
+    /* SPIN BUTTON */
     document.getElementById("spinBtn").onclick = function() {
 
         if (!userCanSpin && !extraSpin) {
@@ -118,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
             let prize = prizes[prizes.length - 1 - index];
 
-            /* EXTRA SPIN */
+            /* Extra Spin */
             if (prize === "دوباره بچرخون") {
                 document.getElementById("wheel-result").innerHTML =
                     "🎉 یک شانس دیگر داری!";
@@ -126,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            /* NOTHING */
+            /* Nothing */
             if (prize === "پوچ") {
                 document.getElementById("wheel-result").innerHTML =
                     "متأسفانه پوچ شد 😕";
@@ -135,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            /* DISCOUNT CODE GENERATOR */
+            /* DISCOUNT CODE */
             let code = "AM-" + Math.random()
                 .toString(36)
                 .substring(2, 8)
