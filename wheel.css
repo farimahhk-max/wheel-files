@@ -45,7 +45,7 @@
     color: #ff5893;
 }
 
-/* ===== POINTER (ON TOP OF WHEEL) ===== */
+/* ===== POINTER ===== */
 #wheel-pointer {
     width: 0;
     height: 0;
@@ -55,7 +55,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 85px; /* <-- قرار گرفتن روی گردونه */
+    top: 85px;
     filter: drop-shadow(0 0 8px #ffea00);
     z-index: 10;
 }
@@ -74,7 +74,7 @@
         inset 0 0 45px rgba(0,0,0,0.7);
 }
 
-/* ===== SPIN BUTTON (CENTERED) ===== */
+/* ===== SPIN BUTTON ===== */
 #spinBtn {
     background: linear-gradient(135deg, #ff9900, #ff6a00);
     border: none;
